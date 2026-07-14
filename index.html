@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidhi Choube - Legal Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#152238;
+    --charcoal:#2c2b28;
+    --parchment:#eeebe1;
+    --oxblood:#7a2e2e;
+    --brass:#a2802f;
+    --line:#cfc8b3;
+    --max: 760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--parchment);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(21,34,56,0.035), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(122,46,46,0.035), transparent 55%);
+    color:var(--charcoal); font-family:'Inter', sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; color:var(--ink); margin:0; font-weight:500; letter-spacing:-0.01em;}
+  .label{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--oxblood);}
+  a{color:var(--ink);}
+  ::selection{background:var(--brass); color:#fff;}
+
+  .doc-rule{position:fixed; top:0; left:0; height:3px; width:100%; background:var(--line); z-index:60;}
+  .doc-rule-fill{height:100%; width:0%; background:var(--oxblood); transition:width .15s ease-out;}
+
+  nav{position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(238,235,225,0.9); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding:14px 24px 12px; margin-top:3px;}
+  .nav-inner{max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .nav-brand{font-family:'Fraunces', serif; font-size:16px; font-weight:500; color:var(--ink); white-space:nowrap;}
+  .nav-links{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;}
+  .nav-links a{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.05em; text-decoration:none; color:var(--charcoal); opacity:0.6; transition:opacity .2s ease, color .2s ease; border-bottom:1px solid transparent; padding-bottom:2px; white-space:nowrap;}
+  .nav-links a.active, .nav-links a:hover{opacity:1; color:var(--oxblood); border-bottom-color:var(--oxblood);}
+
+  .cover{max-width:var(--max); margin:0 auto; padding:150px 24px 80px; position:relative;}
+  .seal-wrap{display:flex; justify-content:center; margin-bottom:34px; opacity:0; transform:scale(0.6) rotate(-14deg); animation:stampIn 900ms cubic-bezier(.2,1.4,.4,1) 200ms forwards;}
+  @keyframes stampIn{60%{opacity:1; transform:scale(1.08) rotate(4deg);} 100%{opacity:1; transform:scale(1) rotate(-6deg);}}
+  .cover-kicker{text-align:center; margin-bottom:10px; opacity:0; animation:fadeUp 700ms ease 550ms forwards;}
+  .cover h1{text-align:center; font-size:clamp(34px, 6vw, 52px); line-height:1.08; opacity:0; animation:fadeUp 700ms ease 680ms forwards;}
+  .cover-sub{text-align:center; max-width:560px; margin:22px auto 0; color:var(--charcoal); font-size:17px; opacity:0; animation:fadeUp 700ms ease 820ms forwards;}
+  .cover-meta{display:flex; justify-content:center; gap:26px; margin-top:30px; flex-wrap:wrap; opacity:0; animation:fadeUp 700ms ease 950ms forwards;}
+  .cover-meta div{text-align:center;}
+  .cover-meta .label{display:block; margin-bottom:4px;}
+  .cover-meta strong{font-family:'Fraunces',serif; font-weight:500; color:var(--ink); font-size:15px;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+  .toc{max-width:var(--max); margin:0 auto 100px; padding:0 24px;}
+  .toc-frame{border:1px solid var(--line); border-left:3px solid var(--oxblood); padding:30px 32px; background:rgba(255,255,255,0.28);}
+  .toc-frame .label{margin-bottom:16px; display:block;}
+  .toc-list{list-style:none; margin:0; padding:0;}
+  .toc-list li{display:flex; align-items:baseline; gap:14px; padding:9px 0; border-bottom:1px dotted var(--line);}
+  .toc-list li:last-child{border-bottom:none;}
+  .toc-list a{text-decoration:none; display:flex; width:100%; justify-content:space-between; align-items:baseline; gap:14px;}
+  .toc-num{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--brass); min-width:56px;}
+  .toc-title{font-family:'Fraunces', serif; font-size:17px; color:var(--ink); flex:1;}
+  .toc-list a:hover .toc-title{color:var(--oxblood);}
+
+  section.article{max-width:var(--max); margin:0 auto; padding:10px 24px 90px; scroll-margin-top:90px;}
+  .article-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px; border-bottom:2px solid var(--ink); padding-bottom:14px;}
+  .article-num{font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:14px;}
+  .article-head h2{font-size:28px;}
+  .article-dek{color:var(--oxblood); font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; margin:14px 0 26px;}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:36px;}
+  .about-grid p{margin:0 0 14px; font-size:15.5px;}
+  .focus-box{border:1px solid var(--line); padding:20px 22px; background:rgba(255,255,255,0.35); align-self:start;}
+  .focus-box .label{margin-bottom:12px; display:block;}
+  .focus-box .focus-sub{margin:16px 0 6px;}
+  .focus-box ul{margin:0; padding:0; list-style:none;}
+  .focus-box li{padding:7px 0; border-bottom:1px dotted var(--line); font-size:14px;}
+  .focus-box li:last-child{border:none;}
+
+  /* timeline */
+  .timeline{position:relative; padding-left:26px;}
+  .timeline::before{content:''; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .tl-stage{position:relative; padding-bottom:34px;}
+  .tl-stage:last-child{padding-bottom:0;}
+  .tl-dot{position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--parchment); border:2px solid var(--oxblood);}
+  .tl-stage.current .tl-dot{background:var(--oxblood);}
+  .tl-stage h3{font-size:17px; margin-bottom:6px;}
+  .tl-stage .label{margin-bottom:8px; display:block;}
+  .tl-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tl-tag{font-family:'IBM Plex Mono', monospace; font-size:11.5px; border:1px solid var(--line); padding:5px 10px; color:var(--charcoal);}
+  .tl-stage.current .tl-tag{border-color:var(--oxblood); color:var(--oxblood);}
+
+  .story-frame{border:1px solid var(--line); border-left:3px solid var(--brass); padding:26px 28px; background:rgba(255,255,255,0.3); margin-top:8px;}
+  .story-frame p{margin:0; font-size:15px;}
+
+  .clause{display:grid; grid-template-columns:64px 1fr; gap:18px; padding:22px 0; border-bottom:1px solid var(--line);}
+  .clause:last-child{border-bottom:none;}
+  .clause-num{font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:14px; padding-top:3px;}
+  .clause h3{font-size:18.5px; margin-bottom:2px;}
+  .clause .org{font-family:'Fraunces', serif; font-style:italic; font-size:14.5px; color:var(--charcoal); opacity:0.85; display:block; margin-bottom:4px;}
+  .clause .role-meta{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--oxblood); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; display:block;}
+  .clause ul{margin:0; padding-left:18px;}
+  .clause li{margin-bottom:6px; font-size:15px;}
+  .placeholder{background:rgba(162,128,47,0.16); border-bottom:1px dashed var(--brass); padding:0 2px;}
+  .clause-note{font-size:14px; color:var(--charcoal); opacity:0.85; margin-top:22px;}
+
+  .achievement-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .achievement-card{border:1px solid var(--line); padding:16px 18px; background:rgba(255,255,255,0.3);}
+  .achievement-card .label{margin-bottom:8px; display:block;}
+  .achievement-card h4{font-family:'Fraunces', serif; font-size:15.5px; font-weight:500; color:var(--ink); margin:0 0 4px;}
+  .achievement-card p{margin:0; font-size:13.5px; color:var(--charcoal); opacity:0.9;}
+
+  .pub-card{padding:22px 0; border-bottom:1px solid var(--line);}
+  .pub-card:last-child{border-bottom:none;}
+  .pub-tag{display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--oxblood); border:1px solid var(--oxblood); padding:3px 9px; margin-bottom:10px;}
+  .pub-card h3{font-size:19px; margin-bottom:4px;}
+  .pub-meta{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--brass); margin-bottom:10px; display:block;}
+  .pub-card p{margin:0 0 10px; font-size:14.5px;}
+  .pub-status{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--charcoal); opacity:0.75;}
+  .pub-status strong{color:var(--ink); font-weight:500;}
+  .pub-note{margin-top:6px; font-size:13.5px; color:var(--charcoal); opacity:0.75;}
+
+  .skill-group{margin-bottom:26px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group .label{margin-bottom:12px; display:block;}
+  .skill-grid{display:flex; flex-wrap:wrap; gap:10px;}
+  .skill-tag{font-family:'IBM Plex Mono', monospace; font-size:12.5px; border:1px solid var(--ink); padding:7px 13px; color:var(--ink); letter-spacing:0.02em; transition:background .2s ease, color .2s ease;}
+  .skill-tag:hover{background:var(--ink); color:var(--parchment);}
+
+  .learning-list{list-style:none; margin:0; padding:0;}
+  .learning-list li{display:flex; gap:14px; align-items:baseline; padding:11px 0; border-bottom:1px dotted var(--line);}
+  .learning-list li:last-child{border:none;}
+  .learning-list .dot{width:6px; height:6px; border-radius:50%; background:var(--oxblood); flex-shrink:0; margin-top:8px;}
+
+  .contact-frame{border:1px solid var(--ink); padding:34px 30px; text-align:center; background:rgba(255,255,255,0.35);}
+  .contact-frame p{max-width:460px; margin:10px auto 24px; color:var(--charcoal);}
+  .contact-links{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn{font-family:'IBM Plex Mono', monospace; font-size:12.5px; text-decoration:none; letter-spacing:0.05em; padding:11px 20px; border:1px solid var(--ink); color:var(--ink); transition:background .2s ease, color .2s ease;}
+  .btn:hover{background:var(--ink); color:var(--parchment);}
+  .btn.primary{background:var(--oxblood); border-color:var(--oxblood); color:#fff;}
+  .btn.primary:hover{background:var(--ink); border-color:var(--ink);}
+
+  footer{max-width:var(--max); margin:0 auto; padding:30px 24px 60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--charcoal); opacity:0.55; border-top:1px dotted var(--line);}
+
+  @media (max-width:640px){
+    .about-grid{grid-template-columns:1fr;}
+    .achievement-grid{grid-template-columns:1fr;}
+    .clause{grid-template-columns:40px 1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .seal-wrap, .cover-kicker, .cover h1, .cover-sub, .cover-meta{animation:none; opacity:1; transform:none;}
+    .reveal{transition:none; opacity:1; transform:none;}
+  }
+  a:focus-visible, .nav-links a:focus-visible, .toc-list a:focus-visible{outline:2px solid var(--oxblood); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="doc-rule"><div class="doc-rule-fill" id="progressFill"></div></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Nidhi Choube</div>
+    <div class="nav-links">
+      <a href="#about" data-nav>I. About</a>
+      <a href="#journey" data-nav>II. Journey</a>
+      <a href="#experience" data-nav>III. Experience</a>
+      <a href="#leadership" data-nav>IV. Leadership</a>
+      <a href="#work" data-nav>V. Selected Work</a>
+      <a href="#skills" data-nav>VI. Skills</a>
+      <a href="#learning" data-nav>VII. Currently Studying</a>
+      <a href="#contact" data-nav>VIII. Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== COVER ===================== -->
+<header class="cover">
+  <div class="seal-wrap">
+    <svg width="112" height="112" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="56" cy="56" r="53" fill="none" stroke="#a2802f" stroke-width="1.4"/>
+      <circle cx="56" cy="56" r="46" fill="none" stroke="#a2802f" stroke-width="0.8"/>
+      <path id="sealCircle" d="M 56,56 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+      <text font-family="IBM Plex Mono, monospace" font-size="7.6" letter-spacing="2.6" fill="#7a2e2e">
+        <textPath href="#sealCircle" startOffset="2%">INTERNATIONAL LAW • COMMERCIAL • ARBITRATION</textPath>
+      </text>
+      <text x="56" y="63" text-anchor="middle" font-family="Fraunces, serif" font-size="26" fill="#152238">NC</text>
+    </svg>
+  </div>
+
+  <div class="cover-kicker label">Legal Portfolio</div>
+  <h1>Nidhi Choube</h1>
+  <p class="cover-sub">
+    Final-year B.B.A. LL.B. (Hons.) student currently specialising in Arbitration and
+    Cyber Law, building expertise in commercial law, international
+    arbitration, and cross-border dispute resolution through legal research,
+    mediation, and hands-on legal experience.
+  </p>
+
+  <div class="cover-meta">
+    <div><span class="label">Stage</span><strong>Final Year</strong></div>
+    <div><span class="label">Direction</span><strong>Commercial Law &amp; Arbitration</strong></div>
+    <div><span class="label">Based</span><strong>New Delhi, India</strong></div>
+  </div>
+</header>
+
+<!-- ===================== TOC ===================== -->
+<div class="toc">
+  <div class="toc-frame">
+    <span class="label">Table of Contents</span>
+    <ul class="toc-list">
+      <li><a href="#about"><span class="toc-num">Art. I</span><span class="toc-title">About</span></a></li>
+      <li><a href="#journey"><span class="toc-num">Art. II</span><span class="toc-title">The Journey</span></a></li>
+      <li><a href="#experience"><span class="toc-num">Art. III</span><span class="toc-title">Experience</span></a></li>
+      <li><a href="#leadership"><span class="toc-num">Art. IV</span><span class="toc-title">Leadership &amp; Recognition</span></a></li>
+      <li><a href="#work"><span class="toc-num">Art. V</span><span class="toc-title">Selected Work</span></a></li>
+      <li><a href="#skills"><span class="toc-num">Art. VI</span><span class="toc-title">Skills</span></a></li>
+      <li><a href="#learning"><span class="toc-num">Art. VII</span><span class="toc-title">Currently Studying</span></a></li>
+      <li><a href="#contact"><span class="toc-num">Art. VIII</span><span class="toc-title">Contact</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== I. ABOUT ===================== -->
+<section class="article reveal" id="about">
+  <div class="article-head"><span class="article-num">Art. I</span><h2>About</h2></div>
+  <div class="article-dek">Profile</div>
+  <div class="about-grid">
+    <div>
+      <p>I'm a final-year B.B.A. LL.B. (Hons.) student at GD Goenka University, specialising in Arbitration and Cyber Law, with a growing focus on international commercial law, arbitration, and cross-border dispute resolution. That interest has developed through legal research, mediation practice, and internships that have exposed me to both Indian and international legal frameworks.</p>
+      <p>I currently work as a Trainee Mediator with George &amp; George ADR Group, a US-based ADR organisation, supporting the resolution of consumer disputes under an American mediation framework, and as Course Coordinator with YCM India, coordinating internationally delivered mediation training involving participants and mediators from multiple jurisdictions. Alongside this, I hold leadership positions across my university's Centre for Conflict Resolution, Centre for Corporate Law, Moot Court Committee, and Trial Advocacy Committee.</p>
+      <p>In April 2026, I presented <em>"Disputes Without Borders: Rethinking Enforcement in Cross-Border Counterfeiting"</em> at GD Goenka University, and the following month presented <em>"Identity without Accountability: Third Party Funding Regulation"</em> at Jamia Hamdard University - both reflecting my growing interest in how commercial disputes are resolved and enforced across borders.</p>
+
+<p>Through internships, mediation work, legal research, and leadership roles, I have tried to build experience that combines legal analysis with practical problem solving. I enjoy work that requires careful research, structured thinking, and collaboration across different legal and professional environments, and I hope to continue developing these skills through opportunities in commercial law and international dispute resolution. </p>
+    </div>
+    <div class="focus-box">
+      <span class="label">Primary Focus</span>
+      <ul>
+        <li>International Commercial Law</li>
+        <li>International Commercial Arbitration</li>
+        <li>Cross-Border Dispute Resolution</li>
+      </ul>
+      <div class="label focus-sub">Additional Interests</div>
+      <ul>
+        <li>Public International Law</li>
+        <li>International Trade Law</li>
+        <li>Environmental Law</li>
+        <li>Mediation &amp; ADR</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== II. THE JOURNEY ===================== -->
+<section class="article reveal" id="journey">
+  <div class="article-head"><span class="article-num">Art. II</span><h2>The Journey</h2></div>
+  <div class="article-dek">How This Focus Developed</div>
+  <p style="margin:0 0 24px; font-size:15px;">During law school, my interests evolved considerably - from public international law and environmental law research in my early years, through mediation training, moot court, and client counselling competitions, to my current focus on commercial law and international arbitration. Each stage built directly on the last, moving from research and advocacy toward hands-on dispute resolution work with international organisations, and now toward internships and commercial legal work in international dispute resolution.</p>
+
+  <div class="timeline">
+    <div class="tl-stage">
+      <span class="tl-dot"></span>
+      <span class="label">Foundation · 2022–2023</span>
+      <h3>Where it started</h3>
+      <div class="tl-tags">
+        <span class="tl-tag">Public International Law</span>
+        <span class="tl-tag">Environmental Law</span>
+        <span class="tl-tag">Legal Research</span>
+        <span class="tl-tag">Class Representative</span>
+      </div>
+    </div>
+    <div class="tl-stage">
+      <span class="tl-dot"></span>
+      <span class="label">Practical Development · 2024–2025</span>
+      <h3>Where it was tested</h3>
+      <div class="tl-tags">
+        <span class="tl-tag">Mediation Training</span>
+        <span class="tl-tag">Trial Advocacy</span>
+        <span class="tl-tag">Jessup Moot</span>
+        <span class="tl-tag">Client Counselling</span>
+      </div>
+    </div>
+    <div class="tl-stage current">
+      <span class="tl-dot"></span>
+      <span class="label">Current Professional Development · 2025–2026</span>
+      <h3>Where I am now</h3>
+      <div class="tl-tags">
+        <span class="tl-tag">International Arbitration</span>
+        <span class="tl-tag">Commercial Mediation</span>
+        <span class="tl-tag">Programme Coordination</span>
+        <span class="tl-tag">Leadership</span>
+      </div>
+    </div>
+    <div class="tl-stage">
+      <span class="tl-dot"></span>
+      <span class="label">Looking Ahead</span>
+      <h3>Where it's going</h3>
+      <div class="tl-tags">
+        <span class="tl-tag">Internships</span>
+        <span class="tl-tag">Commercial Legal Work</span>
+        <span class="tl-tag">International Dispute Resolution</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== III. EXPERIENCE ===================== -->
+<section class="article reveal" id="experience">
+  <div class="article-head"><span class="article-num">Art. III</span><h2>Experience</h2></div>
+  <div class="article-dek">Positions Held</div>
+
+  <div class="clause">
+    <span class="clause-num">3.1</span>
+    <div>
+      <h3>Trainee Mediator</h3>
+      <span class="org">George &amp; George ADR Group</span>
+      <span class="role-meta">Sep 2025 - Present · Remote, Florida, United States</span>
+      <ul>
+        <li>Independently conducted 12 supervised mediations to date involving US-based consumer disputes, managing party communication, facilitating negotiations, and documenting settlement outcomes under the supervision of Mr. Joseph George.</li>
+        <li> Working with a United States ADR organisation has given me practical exposure to disputes arising in consumer credit, insurance, eviction, and investment matters. Conducting supervised mediations and observing experienced mediators has allowed me to understand how structured negotiation, party management, and settlement discussions operate within a different legal system. Combined with coordinating international mediation programmes, these experiences have strengthened my interest in commercial dispute resolution across jurisdictions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <span class="clause-num">3.2</span>
+    <div>
+      <h3>Course Coordinator</h3>
+      <span class="org">YCM India Pvt. Ltd.</span>
+      <span class="role-meta">Nov 2025 - Feb 2026 · Remote, India · Part-time</span>
+      <ul>
+        <li> Coordinated the delivery of IMI-certified mediation training programmes involving participants from multiple countries, working with international mediators to manage scheduling, assessments, programme logistics, and participant engagement across different time zones.</li>
+        <li>Handled participant onboarding, assessments, and programme communication, responding to enquiries from prospective trainees.</li>
+        <li>Balanced these responsibilities alongside full-time legal studies while maintaining First Division with Distinction academic performance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <span class="clause-num">3.3</span>
+    <div>
+      <h3>Legal Intern</h3>
+      <span class="org">K. Datta &amp; Associates</span>
+      <span class="role-meta">Jun 2025 - Jul 2025 · New Delhi</span>
+      <ul>
+        <li>Drafted 15+ legal documents, including pleadings, notices, and written submissions, for matters before the Supreme Court of India, Delhi High Court, NCLT, and NCDRC.</li>
+        <li>Researched director liability under the Negotiable Instruments Act, arbitration procedure under Section 34, and medical negligence claims.</li>
+        <li>Prepared case briefs and legal opinions under tight deadlines across commercial litigation, arbitration, and consumer disputes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <span class="clause-num">3.4</span>
+    <div>
+      <h3>Research Intern, International Relations</h3>
+      <span class="org">International Institute of SDG's and Public Policy Research</span>
+      <span class="role-meta">Jul 2025 - Aug 2025 · Part-time</span>
+      <ul>
+        <li>Conducted research on WTO tariff policy and the impact of recent US tariff measures on global trade, combining legal and policy analysis with data analysis of trade patterns.</li>
+        <li>Contributed to written outputs connecting these trade and tariff questions to broader public policy frameworks and international legal instruments relevant to the Sustainable Development Goals.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <span class="clause-num">3.5</span>
+    <div>
+      <h3>Legal Intern</h3>
+      <span class="org">Indian Law Institute</span>
+      <span class="role-meta">Jul 2023 - Aug 2023 · New Delhi</span>
+      <ul>
+        <li>Assisted with research on arbitration, criminal penalties, and medical jurisprudence, reviewing case law and academic literature.</li>
+        <li>Prepared research notes for academic use, strengthening foundational legal research and analytical skills.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="clause-note">Other legal experience includes internships with LawInternships (The Online Law School), Juris Centre, and TheLegalVoice, covering legal drafting, research, and social media outreach, along with virtual commercial law programmes completed with Ashurst, White &amp; Case, Herbert Smith Freehills, and Clifford Chance.</p>
+</section>
+
+<!-- ===================== IV. LEADERSHIP & RECOGNITION ===================== -->
+<section class="article reveal" id="leadership">
+  <div class="article-head"><span class="article-num">Art. IV</span><h2>Leadership &amp; Recognition</h2></div>
+  <div class="article-dek">Beyond the Classroom</div>
+  <div class="achievement-grid">
+    <div class="achievement-card">
+      <span class="label">Leadership</span>
+      <h4>Co-Convener, Centre for Conflict Resolution</h4>
+      <p> Head of the committee and led planning and coordination of ADR workshops, competitions, and discussions organised by the Centre for Conflict Resolution. Work closely with faculty members, student volunteers, and external speakers to support initiatives promoting mediation and arbitration within the university. Oct 2025–Present.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Leadership</span>
+      <h4>Core Member, Centre for Corporate Law, Policy Research &amp; Governance</h4>
+      <p>Contributing to corporate law research and governance initiatives. Sep 2025–Present.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Leadership</span>
+      <h4>Core Member, Moot Court Committee</h4>
+      <p>Supporting moot court operations, training, and event coordination. Sep 2024–Sep 2025.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Leadership</span>
+      <h4>Core Member, Trial Advocacy &amp; Client Counselling Committee</h4>
+      <p>Organising advocacy and client counselling training for students. Jul 2023–Sep 2025.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Leadership</span>
+      <h4>Class Representative</h4>
+      <p>Represented 60+ students, liaising with faculty on academic matters. May 2023–Aug 2024.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">International Memberships</span>
+      <h4>WIPO ADR Young · LCIA YIAG · SIAC · Young ICCA · ITA</h4>
+      <p>Continuing professional engagement with international arbitration practitioners through webinars, publications, and educational initiatives. 2025–Present.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Recognition</span>
+      <h4>Dean's List Award for Stellar Achievements, 2024</h4>
+      <p>GD Goenka University School of Law - demonstrating exceptional zeal in co-curricular and extracurricular activities while maintaining excellent academic credentials.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Qualification</span>
+      <h4>IMI (The Hague) Qualified Mediator - Eligible</h4>
+      <p>Fulfilled the required accreditation criteria as a YCM-accredited mediator.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Mooting</span>
+      <h4>Oralist, Philip C. Jessup International Law Moot</h4>
+      <p>2025 India Qualifying Rounds.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Mooting</span>
+      <h4>Oralist, ACCORDIA 2025 International Arbitration Moot</h4>
+      <p>Nottingham Law School, United Kingdom.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Mediation Competition</span>
+      <h4>Semi-Finalist &amp; 2nd Best Mediator</h4>
+      <p>Justitia Mediation Competition 2024 (80+ teams), Gitarattan International Business School.</p>
+    </div>
+    <div class="achievement-card">
+      <span class="label">Client Counselling</span>
+      <h4>Semi-Finalist, Intra Client Counselling Competition 2025</h4>
+      <p>Quarter-Finalist, National Client Counselling Competition 2023, Hamdard Institute of Legal Studies and Research.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== V. SELECTED WORK ===================== -->
+<section class="article reveal" id="work">
+  <div class="article-head"><span class="article-num">Art. V</span><h2>Selected Work</h2></div>
+  <div class="article-dek">Research, Publications &amp; Presentations</div>
+
+  <div class="pub-card">
+    <span class="pub-tag">Commercial Law</span>
+    <h3>Identity without Accountability: Third Party Funding Regulation</h3>
+    <span class="pub-meta">Presented at Jamia Hamdard University - March 2026</span>
+    <p>A paper examining the regulatory gaps around third-party funding arrangements in dispute resolution and the accountability questions they raise for funders and parties alike.</p>
+    <p class="pub-status">Status: <strong>Available upon request</strong></p>
+  </div>
+
+  <div class="pub-card">
+    <span class="pub-tag">Commercial Law</span>
+    <h3>Disputes Without Borders: Rethinking Enforcement in Cross-Border Counterfeiting</h3>
+    <span class="pub-meta">Presented at GD Goenka University - April 2026</span>
+    <p>A paper analysing enforcement mechanisms for cross-border counterfeiting disputes and the challenges of coordinating remedies across jurisdictions.</p>
+    <p class="pub-status">Status: <strong>Available upon request</strong></p>
+  </div>
+
+  <div class="pub-card">
+    <span class="pub-tag">International Trade Law</span>
+    <h3>The Tariff Earthquake and Its Aftershocks</h3>
+    <span class="pub-meta">1st International Conference: From Regulation to Responsibility, GD Goenka University - Nov 2025</span>
+    <p>A paper examining the ripple effects of recent tariff shifts on global trade regulation and commercial relationships.</p>
+    <p class="pub-status">Status: <strong>Available upon request</strong></p>
+  </div>
+
+  <div class="pub-card">
+    <span class="pub-tag">Environmental Law</span>
+    <h3>When the City Chokes, Who Decides How We Breathe?</h3>
+    <span class="pub-meta">Published in <em>Air Pollution in India</em>, Integrity Education India - ISBN 978-93-49868-95-3, 2025</span>
+    <p>A published book chapter examining environmental governance and judicial intervention in Delhi's air pollution crisis through constitutional and statutory analysis.</p>
+    <p class="pub-status">Status: <strong>Published</strong></p>
+  </div>
+
+  <div class="pub-card">
+    <span class="pub-tag">Environmental Law</span>
+    <h3>Valuing Water: Environmental, Social and Cultural Importance</h3>
+    <span class="pub-meta">Published in <em>Solutionem Consequendam</em> - 2024</span>
+    <p>A published paper exploring water as a legal and cultural resource, and the frameworks that govern its protection and allocation.</p>
+    <p class="pub-status">Status: <strong>Published</strong></p>
+  </div>
+
+  <div class="pub-card">
+    <span class="pub-tag">Arbitration</span>
+    <h3>Resolving Real Estate Disputes via Fast Track Arbitration</h3>
+    <span class="pub-meta">The Arbitration Renaissance - 2025</span>
+    <p>A paper on the use of expedited arbitration procedures for resolving real estate and construction disputes efficiently.</p>
+    <p class="pub-status">Status: <strong>Available upon request</strong></p>
+  </div>
+
+  <div class="pub-card">
+    <span class="pub-tag">Commercial Law · ADR</span>
+    <h3>ADR in Corporate Disputes</h3>
+    <span class="pub-meta">Vedseadus Legal Virtual Conference - 2024</span>
+    <p>A paper on the growing role of alternative dispute resolution mechanisms in resolving corporate and commercial disagreements.</p>
+    <p class="pub-status">Status: <strong>Available upon request</strong></p>
+  </div>
+
+  <p class="pub-note">Full pieces are shared as PDF on request rather than posted publicly - a couple I'm hoping to publish, and I'd rather not undercut that.</p>
+</section>
+
+<!-- ===================== VI. SKILLS ===================== -->
+<section class="article reveal" id="skills">
+  <div class="article-head"><span class="article-num">Art. VI</span><h2>Skills</h2></div>
+  <div class="article-dek">Grouped by Application</div>
+
+  <div class="skill-group">
+    <span class="label">Legal Skills</span>
+    <div class="skill-grid">
+      <span class="skill-tag">Legal Research</span>
+      <span class="skill-tag">Legal Writing</span>
+      <span class="skill-tag">Case Law Analysis</span>
+      <span class="skill-tag">Statutory Interpretation</span>
+      <span class="skill-tag">Treaty Interpretation</span>
+    </div>
+  </div>
+
+  <div class="skill-group">
+    <span class="label">Commercial &amp; ADR Skills</span>
+    <div class="skill-grid">
+      <span class="skill-tag">Commercial Awareness</span>
+      <span class="skill-tag">Cross-Border Legal Research</span>
+      <span class="skill-tag">Negotiation</span>
+      <span class="skill-tag">Mediation</span>
+      <span class="skill-tag">Dispute Resolution</span>
+    </div>
+  </div>
+
+  <div class="skill-group">
+    <span class="label">Professional Skills</span>
+    <div class="skill-grid">
+      <span class="skill-tag">Stakeholder Communication</span>
+      <span class="skill-tag">Programme Coordination</span>
+      <span class="skill-tag">Public Speaking</span>
+      <span class="skill-tag">Team Collaboration</span>
+      <span class="skill-tag">Time Management</span>
+    </div>
+  </div>
+
+  <div class="skill-group">
+    <span class="label">Digital Skills</span>
+    <div class="skill-grid">
+      <span class="skill-tag">Microsoft Office</span>
+      <span class="skill-tag">Canva</span>
+      <span class="skill-tag">AI-Assisted Legal Research</span>
+      <span class="skill-tag">Lexis Nexis</span>
+      <span class="skill-tag">SCC Online</span>
+      <span class="skill-tag">Westlaw</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VII. CURRENTLY STUDYING ===================== -->
+<section class="article reveal" id="learning">
+  <div class="article-head"><span class="article-num">Art. VII</span><h2>Currently Studying</h2></div>
+  <div class="article-dek">In Progress, Right Now</div>
+  <ul class="learning-list">
+    <li><span class="dot"></span>International Commercial Arbitration</li>
+    <li><span class="dot"></span>Cross-Border Commercial Transactions</li>
+    <li><span class="dot"></span>Comparative Commercial Law</li>
+  </ul>
+</section>
+
+<!-- ===================== VIII. CONTACT ===================== -->
+<section class="article reveal" id="contact">
+  <div class="article-head"><span class="article-num">Art. VIII</span><h2>Contact</h2></div>
+  <div class="article-dek">Get In Touch</div>
+  <div class="contact-frame">
+    <h3 style="font-size:20px;">Interested in opportunities involving commercial law, arbitration, mediation, and cross-border legal research.</h3>
+    <p>The fastest way to reach me is by email. Detailed curriculum vitae, writing samples, and research papers are available upon request. </p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:nidhichoube0@gmail.com">Email Me</a>
+      <a class="btn" href="https://www.linkedin.com/in/nidhi-choube/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Nidhi Choube - Legal Portfolio</span>
+  <span>Last updated July 2026</span>
+</footer>
+
+<script>
+  const fill = document.getElementById('progressFill');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    fill.style.width = pct + '%';
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const sections = document.querySelectorAll('section.article');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+      if(!link) return;
+      if(entry.isIntersecting){
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(s => spy.observe(s));
+</script>
+
+</body>
+</html>
+
+
